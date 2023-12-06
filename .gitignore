@@ -159,7 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Recursively ignore all files named "input.txt" (whatever you named it)
+# Recursively ignore all files named "*_input.txt"
 **/*_input.txt
 
 # Recursively ignore all files matching ".txt"
