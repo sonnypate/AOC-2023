@@ -21,6 +21,7 @@ def get_card_id(string: str) -> int:
 
 
 def get_card_score(card_string: str) -> int:
+    """Gets the score based on part 1."""
     card_numbers = card_string.strip("Card ").lstrip('1234567890').strip(':').split('|')
     scratched_numbers = list(map(int, list(card_numbers[0].strip().split())))
     winning_numbers = list(map(int, list(card_numbers[1].strip().split())))
@@ -38,18 +39,18 @@ def get_card_score(card_string: str) -> int:
 
 
 def get_winning_card_count(card_string: str) -> int:
+    """Gets the total winning card count for part 2."""
     card_numbers = card_string.strip("Card ").lstrip('1234567890').strip(':').split('|')
     scratched_numbers = list(map(int, list(card_numbers[0].strip().split())))
     winning_numbers = list(map(int, list(card_numbers[1].strip().split())))
 
-    score = 0
-    # The score is done by doubling each matching number.
-    # so if 4 are matching, then scoring is 1,2,4,8.
+    count = 0
+
     for number in scratched_numbers:
         if number in winning_numbers:
-            score += 1
+            count += 1
     
-    return score
+    return count
 
 
 def solve_part1(input_data: list[str]) -> int:
