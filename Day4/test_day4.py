@@ -55,3 +55,9 @@ def test_get_card_id():
     example_card = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
     input_data = day4.get_card_id(example_card)
     assert input_data == 1
+
+def test_get_winning_card_count():
+    """Example data should return 4 matches."""
+    example_card = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
+    input_data = day4.get_winning_card_count(example_card)
+    assert input_data == 4

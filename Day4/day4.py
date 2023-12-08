@@ -37,6 +37,21 @@ def get_card_score(card_string: str) -> int:
     return score
 
 
+def get_winning_card_count(card_string: str) -> int:
+    card_numbers = card_string.strip("Card ").lstrip('1234567890').strip(':').split('|')
+    scratched_numbers = list(map(int, list(card_numbers[0].strip().split())))
+    winning_numbers = list(map(int, list(card_numbers[1].strip().split())))
+
+    score = 0
+    # The score is done by doubling each matching number.
+    # so if 4 are matching, then scoring is 1,2,4,8.
+    for number in scratched_numbers:
+        if number in winning_numbers:
+            score += 1
+    
+    return score
+
+
 def solve_part1(input_data: list[str]) -> int:
     """Solve part 1 of day 4."""
     total_score = 0
@@ -47,8 +62,21 @@ def solve_part1(input_data: list[str]) -> int:
 
 def solve_part2(input_data: list[str]) -> int:
     """Solve part 2 of day 4."""
-    total_cards = input_data.__len__()
-    pass
+    # List of each card. Each item in the list
+    # represents the count of each card.
+    input_data_len = len(input_data)
+    cards = [1] * len(input_data)
+    for index, line in enumerate(input_data):
+        # Get winning card count
+        winning_count = get_winning_card_count(line)
+        next_card = index + 1
+        next_card_len = next_card + winning_count
+        for i in range(next_card, min(next_card_len, input_data_len)):
+            # For each winning card, add the value
+            # of the current card count represented by cards[index]
+            # to the next cards. 
+            cards[i] += cards[index]
+    return sum(cards)
 
 
 if __name__ == "__main__":
